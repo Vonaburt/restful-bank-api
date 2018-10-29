@@ -3,7 +3,7 @@ package ru.home.restfulbankapi.models;
 import lombok.Getter;
 import lombok.Setter;
 
-enum Currency {
+public enum Currency {
 
     RUR(1),
     EUR(2),
