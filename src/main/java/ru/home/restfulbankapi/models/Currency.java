@@ -3,7 +3,9 @@ package ru.home.restfulbankapi.models;
 import lombok.Getter;
 import lombok.Setter;
 
-public enum Currency {
+import java.io.Serializable;
+
+public enum Currency implements Serializable {
 
     RUR(1),
     EUR(2),
