@@ -4,7 +4,8 @@
 - deleteAccount(accountNumber): удаление счета в банке, где accountNumber - номер счета;
 
 
-- getAccount(userInfo) : получение счета клиента, где userInfo - информация о клиенте;
+- getAccount(accountNumber) : получение счета клиента, где accountNumber - информация о клиенте;
+- getAccount(firstName, lastName) : получение счета клиента, где firstName - имя клиента, lastName - фамилия клиента;
 - getAccountBalance(accountNumber) : получение баланса счета, где accountNumber - номер счета;
 
 
