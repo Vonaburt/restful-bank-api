@@ -93,4 +93,17 @@ public class AccountController {
                     .entity(String.format("Couldn`t to get account with account firstName %s and lastName %s", firstName, lastName)).build();
         }
     }
+
+    @GET
+    @Path("/getAccountBalance")
+    public Response getAccountBalance(@QueryParam("accountNumber") Integer accountNumber) {
+        Account account = (Account) this.getAccount(accountNumber).getEntity();
+
+        if (account == null) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(String.format("Couldn`t to get account with account number %s", accountNumber)).build();
+        }
+
+        return Response.ok(account.getBalance()).build();
+    }
 }
