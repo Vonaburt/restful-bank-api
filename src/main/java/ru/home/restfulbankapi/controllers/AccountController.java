@@ -44,7 +44,6 @@ public class AccountController {
         Optional<Account> accountToDelete = AccountsStorage.getAccounts().stream()
                 .filter(account -> account.getAccountNumber().equals(accountNumber)).findFirst();
 
-
         if (accountToDelete.isPresent()) {
             log.info(String.format("/deleteAccount : %s", accountToDelete.get()));
             AccountsStorage.remove(accountToDelete.get());
@@ -52,6 +51,46 @@ public class AccountController {
         } else {
             return Response.status(Response.Status.BAD_REQUEST)
                     .entity(String.format("Couldn`t to delete account with account number %s", accountNumber)).build();
+        }
+    }
+
+    @GET
+    @Path("/getAccountByNumber")
+    public Response getAccount(@QueryParam("accountNumber") Integer accountNumber) {
+        if (accountNumber == null) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("Account number is null").build();
+        }
+
+        Optional<Account> accountToGet = AccountsStorage.getAccounts().stream()
+                .filter(account -> account.getAccountNumber().equals(accountNumber)).findFirst();
+
+        if (accountToGet.isPresent()) {
+            log.info(String.format("/getAccount : %s", accountToGet.get()));
+            return Response.ok(accountToGet.get()).build();
+        } else {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(String.format("Couldn`t to get account with account number %s", accountNumber)).build();
+        }
+    }
+
+    @GET
+    @Path("/getAccountByInfo")
+    public Response getAccount(@QueryParam("firstName") String firstName, @QueryParam("lastName") String lastName) {
+        if (firstName.isEmpty() || lastName.isEmpty()) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(String.format("Invalid data for account getting: firstName is '%s', lastName is '%s'", firstName, lastName)).build();
+        }
+
+        Optional<Account> accountToGet = AccountsStorage.getAccounts().stream()
+                .filter(account -> account.getUserInfo().getFirstName().equals(firstName) && account.getUserInfo().getLastName().equals(lastName)).findFirst();
+
+        if (accountToGet.isPresent()) {
+            log.info(String.format("/getAccount : %s", accountToGet.get()));
+            return Response.ok(accountToGet.get()).build();
+        } else {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(String.format("Couldn`t to get account with account firstName %s and lastName %s", firstName, lastName)).build();
         }
     }
 }
