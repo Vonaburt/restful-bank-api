@@ -9,7 +9,8 @@
 - getAccountBalance(accountNumber) : получение баланса счета, где accountNumber - номер счета;
 
 
-- transferFromAccount(fromAccountNumber, destinationAccountNumber, amount) : перед средств с одного счета на другой (в том числе операции оплаты) 
+- addAmountToAccount(destinationAccountNumber, amount) : пополнение счета клиента, где destinationAccountNumber - номер счет клиента, amount - сумма пополнения
+- transferFromAccount(fromAccountNumber, destinationAccountNumber, amount) : перевод средств с одного счета на другой (в том числе операции оплаты), где fromAccountNumber - номер счета отправителя, destinationAccountNumber - номер счета получателя, amount - сумма перевода 
 
 
 - getAllOperationsHistory(accountNumber) : получение списка всех операций 
