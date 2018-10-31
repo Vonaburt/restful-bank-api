@@ -56,4 +56,24 @@ public class OperationsController {
 
         return Response.ok(transferOperation).build();
     }
+
+    @POST
+    @Path("/addAmountToAccount")
+    public Response addAmountToAccount(@QueryParam("toAccount") Integer destinationAccountNumber, @QueryParam("amount") BigDecimal amount) {
+        if (destinationAccountNumber == null) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("Account number is null").build();
+        }
+
+        Account destinationAccount = (Account) accountController.getAccount(destinationAccountNumber).getEntity();
+        destinationAccount.setBalance(destinationAccount.getBalance().add(amount));
+
+        log.info(String.format("Add amount %s to account %s, new balance is %s",
+                amount.toString(), destinationAccountNumber, destinationAccount.getBalance().toString()));
+
+        TransferOperation transferOperation = new TransferOperation(LocalDateTime.now().toString(), 0, destinationAccountNumber, amount, OperationStatus.OK);
+        TransferOperationsStorage.add(transferOperation);
+
+        return Response.ok(transferOperation).build();
+    }
 }
