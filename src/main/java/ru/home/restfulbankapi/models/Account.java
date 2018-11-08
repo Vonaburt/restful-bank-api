@@ -16,6 +16,9 @@ public class Account {
     private BigDecimal balance;
     private String accountCreatedDate;
 
+    public Account() {
+    }
+
     public Account(UserInfo userInfo, Currency currency, BigDecimal balance) {
         this.userInfo = userInfo;
         this.currency = currency;

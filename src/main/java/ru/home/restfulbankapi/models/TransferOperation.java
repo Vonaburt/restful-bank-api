@@ -16,6 +16,9 @@ public class TransferOperation {
     private BigDecimal amount;
     private OperationStatus operationStatus;
 
+    public TransferOperation() {
+    }
+
     public TransferOperation(String operationDateTime, Integer fromAccountNumber, Integer toAccountNumber, BigDecimal amount, OperationStatus operationStatus) {
         this.operationDateTime = operationDateTime;
         this.fromAccountNumber = fromAccountNumber;
