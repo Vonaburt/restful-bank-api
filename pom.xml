@@ -59,11 +59,6 @@
             <artifactId>jersey-hk2</artifactId>
         </dependency>
 
-        <!--<dependency>-->
-            <!--<groupId>org.glassfish.jersey.media</groupId>-->
-            <!--<artifactId>jersey-media-json-binding</artifactId>-->
-        <!--</dependency>-->
-
         <dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
             <artifactId>jersey-container-grizzly2-http</artifactId>
@@ -74,6 +69,13 @@
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-json-jackson</artifactId>
             <version>2.22.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.3.1</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
