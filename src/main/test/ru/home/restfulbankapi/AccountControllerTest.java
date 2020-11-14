@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import ru.home.restfulbankapi.models.Account;
+import ru.home.restfulbankapi.models.UserInfo;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -27,21 +28,21 @@ class AccountControllerTest {
 
     @Test
     void testCreateAccount() {
-        String accountJsonData = "{\n" +
-                "\"firstName\" : \"Kamilla\",\n" +
-                "\"lastName\": \"Kamillkina\",\n" +
-                "\"age\" : 24\n" +
-                "}";
+        UserInfo userInfo = new UserInfo();
+        userInfo.setFirstName("Kamilla");
+        userInfo.setLastName("Kamillkina");
+        userInfo.setAge((short) 24);
 
-        Response response = target.path("account")
+        Response createAccountResponse = target.path("account")
                 .path("createAccount")
                 .queryParam("currency", "EUR")
-                .request(MediaType.APPLICATION_JSON_TYPE).post(Entity.json(accountJsonData));
+                .request(MediaType.APPLICATION_JSON_TYPE)
+                .post(Entity.json(userInfo));
+        Account actualAccount = createAccountResponse.readEntity(Account.class);
 
-        Account account = response.readEntity(Account.class);
-        Assertions.assertEquals("Kamilla", account.getUserInfo().getFirstName(), "FirstName is not equals");
+        Assertions.assertEquals(actualAccount.getUserInfo(),
+                userInfo, "UserInfo is not equals");
     }
-
 
     @AfterAll
     static void stopServer() {
