@@ -9,5 +9,5 @@ import java.io.Serializable;
 public class UserInfo implements Serializable {
     private String firstName;
     private String lastName;
-    private short age;
+    private Short age;
 }
