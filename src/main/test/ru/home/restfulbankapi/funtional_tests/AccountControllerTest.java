@@ -1,6 +1,7 @@
-package ru.home.restfulbankapi;
+package ru.home.restfulbankapi.funtional_tests;
 
 import org.junit.jupiter.api.*;
+import ru.home.restfulbankapi.Server;
 import ru.home.restfulbankapi.models.Account;
 import ru.home.restfulbankapi.models.UserInfo;
 
