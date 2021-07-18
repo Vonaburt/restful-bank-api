@@ -26,6 +26,11 @@ public class AccountController {
                     .entity(String.format("UserInfo is %s, Currency is %s", userInfo, currency)).build();
         }
 
+        if (userInfo.getFirstName().trim().isEmpty() || userInfo.getLastName().trim().isEmpty()) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(String.format("First name is: %s, Last name is %s", userInfo.getFirstName().trim(), userInfo.getLastName().trim())).build();
+        }
+
         Account account = new Account(userInfo, currency, new BigDecimal(0));
         AccountsStorage.add(account);
 
