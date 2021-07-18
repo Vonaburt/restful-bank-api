@@ -1,9 +1,6 @@
 package ru.home.restfulbankapi;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import ru.home.restfulbankapi.models.Account;
 import ru.home.restfulbankapi.models.UserInfo;
 
@@ -26,8 +23,10 @@ class AccountControllerTest {
         target = c.target(Server.getBASE_URI());
     }
 
+    @Tag("functional")
+    @DisplayName("Создание аккаунта. Корректные данные")
     @Test
-    void testCreateAccount() {
+    void createAccountTest() {
         UserInfo userInfo = new UserInfo();
         userInfo.setFirstName("Kamilla");
         userInfo.setLastName("Kamillkina");
